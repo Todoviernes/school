@@ -29,6 +29,13 @@ class Staff(SystemModel):
         return self.user.name
 
 
+class Parent(SystemModel):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='parent_profile')
+
+    def __str__(self):
+        return self.user.name
+
+
 class Absence(SystemModel):
     student = models.ForeignKey(Student, related_name='absences', on_delete=models.CASCADE)
     date = models.DateField()

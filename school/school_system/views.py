@@ -23,14 +23,14 @@ class StudentCreateView(CreateView):
     model = Student
     form_class = StudentForm
     template_name = 'student_form.html'
-    success_url = reverse_lazy('student-list')
+    success_url = reverse_lazy('school_system:student-list')
 
 
 class StudentUpdateView(UpdateView):
     model = Student
     form_class = StudentForm
     template_name = 'student_form.html'
-    success_url = reverse_lazy('student-list')
+    success_url = reverse_lazy('school_system:student-list')
 
 
 class StudentDeleteView(DeleteView):

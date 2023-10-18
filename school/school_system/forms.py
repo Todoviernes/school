@@ -2,10 +2,17 @@ from django import forms
 from school.school_system.models import Student, Faculty, Staff, Absence, Tardy, Excuse, Assignment, Grade, Forum, ForumPost
 
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = '__all__'
+        widgets = {
+            'enrollment_date': DateInput()
+        }
 
 
 class FacultyForm(forms.ModelForm):
