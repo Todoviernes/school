@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=school
+POSTGRES_USER=QhmLuaamDIMEIKIWhVLVjonTFSuhLVEH
+POSTGRES_PASSWORD=bGr6qgvj3NLfk8bKDIVvXmV4sndzoz2pDLznG0wXMf0VNzEtDxWZy3wttZw3SDRU
