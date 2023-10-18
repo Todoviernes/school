@@ -16,6 +16,7 @@ urlpatterns = [
     path("users/", include("school.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    path("school/", include("school.school_system.urls", namespace="school_system"), name="school_system"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # API URLS
