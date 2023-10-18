@@ -1,20 +1,21 @@
 from django.db import models
+
 from school.users.models import User
-from school.utils.models import SystemModel, SlugModel
+from school.utils.models import SystemModel
 
 
 class Student(SystemModel):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     enrollment_date = models.DateField()
-    parent = models.ForeignKey(User, related_name='children', on_delete=models.CASCADE)
+    parent = models.ForeignKey(User, related_name="children", on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
 
 class Faculty(SystemModel):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='faculty_profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="faculty_profile")
     title = models.CharField(max_length=100)
 
     def __str__(self):
@@ -22,7 +23,7 @@ class Faculty(SystemModel):
 
 
 class Staff(SystemModel):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='staff_profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="staff_profile")
     position = models.CharField(max_length=100)
 
     def __str__(self):
@@ -30,14 +31,14 @@ class Staff(SystemModel):
 
 
 class Parent(SystemModel):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='parent_profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="parent_profile")
 
     def __str__(self):
         return self.user.name
 
 
 class Absence(SystemModel):
-    student = models.ForeignKey(Student, related_name='absences', on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, related_name="absences", on_delete=models.CASCADE)
     date = models.DateField()
     reason = models.TextField()
     recorded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
@@ -50,7 +51,7 @@ class Absence(SystemModel):
 
 
 class Tardy(SystemModel):
-    student = models.ForeignKey(Student, related_name='tardies', on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, related_name="tardies", on_delete=models.CASCADE)
     date = models.DateField()
     reason = models.TextField()
     recorded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
@@ -60,7 +61,7 @@ class Tardy(SystemModel):
 
 
 class Excuse(SystemModel):
-    student = models.ForeignKey(Student, related_name='excuses', on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, related_name="excuses", on_delete=models.CASCADE)
     date = models.DateField()
     note = models.TextField()
     provided_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
@@ -79,7 +80,7 @@ class Assignment(SystemModel):
 
 
 class Grade(SystemModel):
-    student = models.ForeignKey(Student, related_name='grades', on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, related_name="grades", on_delete=models.CASCADE)
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
     score = models.FloatField()
     total_points = models.FloatField()
@@ -101,7 +102,7 @@ class Forum(SystemModel):
 
 
 class ForumPost(SystemModel):
-    forum = models.ForeignKey(Forum, related_name='posts', on_delete=models.CASCADE)
+    forum = models.ForeignKey(Forum, related_name="posts", on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     content = models.TextField()
 

@@ -1,14 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}
-Student List
-{% endblock %}
-
+{% block title %}Student List{% endblock %}
 {% block content %}
   <h1>Student List</h1>
-
   <a href="{% url 'school_system:student-create' %}">Add New Student</a>
-
   <table>
     <thead>
       <tr>
@@ -38,5 +33,4 @@ Student List
       {% endfor %}
     </tbody>
   </table>
-
 {% endblock %}
